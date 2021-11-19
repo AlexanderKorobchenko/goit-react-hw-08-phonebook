@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #498ef2;
+  display: flex;
+  justify-content: space-between;
+}
+.link {
+  display: flex;
+  align-items: center;
+  color: #aaa;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.link:hover {
+  color: #498ef2;
+}
+.current {
+  color: #498ef2;
+}
+.text {
+  margin-left: 6px;
+}

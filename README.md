@@ -33,6 +33,10 @@
 Redux:
 
 - npm i redux
+- npm i react-router-dom
 - npm install react-redux
 - npm i @reduxjs/toolkit
 - npm i redux-devtools-extension
+- npm i redux-persist
+
+Axios
