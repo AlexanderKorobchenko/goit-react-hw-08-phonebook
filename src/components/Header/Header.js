@@ -1,10 +1,13 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LoginIcon from '@mui/icons-material/Login';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Authorization from '../Authorization';
+import UserMenu from '../UserMenu';
+import { authSelectors } from '../../redux/auth';
 import s from './Header.module.css';
 
 function Header({ children }) {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <header className={s.header}>
       {children}
@@ -12,16 +15,7 @@ function Header({ children }) {
         <ContactPhoneIcon />
         <span className={s.text}>Contacts</span>
       </NavLink>
-      <div>
-        <NavLink to="/login" className={s.link} activeClassName={s.current}>
-          <LoginIcon />
-          <span className={s.text}>Log in</span>
-        </NavLink>
-        <NavLink to="/signup" className={s.link} activeClassName={s.current}>
-          <PersonAddIcon />
-          <span className={s.text}>Sign up</span>
-        </NavLink>
-      </div>
+      {isLoggedIn ? <UserMenu name="Alex" /> : <Authorization />}
     </header>
   );
 }

@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../redux/auth';
 import styles from './LoginView.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -24,8 +27,8 @@ function Login() {
       return;
     }
 
-    console.log('submit');
-    // dispatch(authOperations.logIn({ email, password }));
+    // console.log('submit');
+    dispatch(authOperations.logIn({ email, password }));
 
     setEmail('');
     setPassword('');

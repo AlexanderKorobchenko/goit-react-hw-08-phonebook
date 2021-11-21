@@ -1,0 +1,22 @@
+.label {
+  width: 662px;
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #ccc;
+}
+.input {
+  width: 88%;
+  margin-left: 23px;
+  outline: none;
+  color: #ccc;
+  background-color: transparent;
+  border: 1px solid #ccc;
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid #498ef2;
+}

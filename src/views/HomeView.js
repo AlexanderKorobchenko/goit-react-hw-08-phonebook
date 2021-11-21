@@ -12,7 +12,7 @@ function Home() {
           Log in
         </NavLink>{' '}
         to open the phone book or <br />
-        <NavLink to="/singup" className={s.link}>
+        <NavLink to="/register" className={s.link}>
           register a new profile
         </NavLink>{' '}
         to create a new phone book

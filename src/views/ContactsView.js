@@ -1,10 +1,25 @@
-import s from './ContactsView.module.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ContactList from '../components/Phonebook/ContactList';
+import ContactForm from '../components/Phonebook/ContactForm';
+import Filter from '../components/Phonebook/Filter';
+import { contactsOperations, contactsSelectors } from '../redux/contacts';
 
-function Contacts() {
+export default function ContactsView() {
+  const dispatch = useDispatch();
+  useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
+
+  const contacts = useSelector(contactsSelectors.getAllContacts);
+
+  // const isLoadingContacts = useSelector(contactsSelectors.getLoading);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const toggleModal = () => setIsModalOpen(state => !state);
+
   return (
-    <ul className={s.list}>
-      <li>CONTACTS...</li>
-    </ul>
+    <>
+      <ContactForm contacts={contacts} />
+      <Filter />
+      <ContactList />
+    </>
   );
 }
-export default Contacts;
