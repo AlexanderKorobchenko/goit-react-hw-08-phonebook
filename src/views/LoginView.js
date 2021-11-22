@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
 import styles from './LoginView.module.css';
@@ -63,6 +64,12 @@ function Login() {
         <button type="submit" className={styles.btn}>
           Log in
         </button>
+        <span className={styles.text}>
+          or{' '}
+          <NavLink to="/register" className={styles.link}>
+            register a new profile
+          </NavLink>
+        </span>
       </form>
     </div>
   );

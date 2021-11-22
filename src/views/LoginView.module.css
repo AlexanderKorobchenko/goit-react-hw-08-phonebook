@@ -38,6 +38,7 @@
   margin-top: 22px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 15px;
   outline: none;
   border: 2px solid rgb(239, 239, 239);
   border-radius: 2px;
@@ -45,4 +46,16 @@
 .btn:hover,
 .btn:focus {
   border: 2px solid #498ef2;
+}
+.text {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* text-align: center; */
+  font-size: 16px;
+  text-align: center;
+}
+
+.link {
+  color: #498ef2;
 }

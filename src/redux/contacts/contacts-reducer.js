@@ -8,9 +8,6 @@ import {
   deleteContactSuccess,
   deleteContactError,
   changeFilter,
-  //   toggleCompletedRequest,
-  //   toggleCompletedSuccess,
-  //   toggleCompletedError,
   fetchContactsRequest,
   fetchContactsSuccess,
   fetchContactsError,
@@ -21,7 +18,6 @@ const items = createReducer([], {
   [addNewContactSuccess]: (state, { payload }) => [...state, payload],
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
-  //[toggleCompletedSuccess]: (state, { payload }) => state.map(todo => (todo.id === payload.id ? payload : todo)),
 });
 
 const loading = createReducer(false, {
@@ -34,9 +30,6 @@ const loading = createReducer(false, {
   [deleteContactRequest]: () => true,
   [deleteContactSuccess]: () => false,
   [deleteContactError]: () => false,
-  //   [toggleCompletedRequest]: () => true,
-  //   [toggleCompletedSuccess]: () => false,
-  //   [toggleCompletedError]: () => false,
 });
 
 const filter = createReducer('', {

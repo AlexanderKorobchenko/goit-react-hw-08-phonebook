@@ -1,13 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Container from './components/Container';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import Home from './views/HomeView';
-import Contacts from './views/ContactsView';
-import Login from './views/LoginView';
-import Signup from './views/SignupView';
 import { authOperations, authSelectors } from './redux/auth';
+import CircularProgress from '@mui/material/CircularProgress';
+import s from './App.css';
+
+const Login = lazy(() =>
+  import('./views/LoginView' /* webpackChunkName: "login-page" */),
+);
+const Signup = lazy(() =>
+  import('./views/SignupView' /* webpackChunkName: "signup-page" */),
+);
+const Contacts = lazy(() =>
+  import('./views/ContactsView' /* webpackChunkName: "contacts-page" */),
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -21,24 +32,30 @@ function App() {
     <Container>
       <Header />
       {isFetchingCurrentUser ? (
-        <h2>Loading...</h2>
+        <CircularProgress />
       ) : (
         <Switch>
-          <Route path="/" exact>
+          <PublicRoute path="/" exact redirectTo="/contacts" restricted>
             <Home />
-          </Route>
+          </PublicRoute>
 
-          <Route path="/contacts">
-            <Contacts />
-          </Route>
-
-          <Route path="/login">
-            <Login />
-          </Route>
-
-          <Route path="/register">
-            <Signup />
-          </Route>
+          <Suspense
+            fallback={
+              <div className={s.box}>
+                <CircularProgress className={s.progress} />
+              </div>
+            }
+          >
+            <PublicRoute path="/login" redirectTo="/contacts" restricted>
+              <Login />
+            </PublicRoute>
+            <PublicRoute path="/register" redirectTo="/contacts" restricted>
+              <Signup />
+            </PublicRoute>
+            <PrivateRoute path="/contacts" redirectTo="/login">
+              <Contacts />
+            </PrivateRoute>
+          </Suspense>
         </Switch>
       )}
     </Container>

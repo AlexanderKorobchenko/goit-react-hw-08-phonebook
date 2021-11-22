@@ -7,7 +7,12 @@ function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUsername);
 
-  const capitalLetters = 'AK';
+  const capitalLetters = name
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase();
+
   return (
     <div className={s.container}>
       <div className={s.circle}>{capitalLetters}</div>
